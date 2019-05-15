@@ -27,6 +27,7 @@ public class CollectionHelper {
         return result;
     }
 
+
     public static List<Integer> getIntegerList(int size){
         List<Integer> result = new ArrayList<>(size);
         for (int i = 0; i < size; i++){
