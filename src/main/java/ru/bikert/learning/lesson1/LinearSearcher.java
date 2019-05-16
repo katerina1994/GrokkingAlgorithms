@@ -1,33 +1,53 @@
 package ru.bikert.learning.lesson1;
 
-import ru.bikert.learning.ConsoleLogger;
-import ru.bikert.learning.Logger;
-
+import ru.bikert.learning.CollectionHelper;
 import java.util.List;
 
 public class LinearSearcher implements Searcher {
 
-    private final Logger logger;
+    final int SIZE_COLLECTION = 100;
+    final int SOUGHT_NUMBER = 25;
 
-    public LinearSearcher(Logger logger) {
-        if (logger == null) this.logger = new ConsoleLogger();
-        else this.logger = logger;
-    }
+    int soughtNumber = 25;
+    List<Integer> sortedList;
 
     public LinearSearcher() {
-        this.logger = new ConsoleLogger();
+        System.out.println("LinearSearcher is Start DEFAULT!!!");
+        sortedList = CollectionHelper.getIntegerSortedList(SIZE_COLLECTION);
+        soughtNumber = SOUGHT_NUMBER;
+        run();
+        System.out.println("LinearSearcher is finish!!!");
+    }
+
+    public LinearSearcher(int number, int size) {
+        System.out.println("LinearSearcher is Start!!!");
+        soughtNumber = number;
+        sortedList = CollectionHelper.getIntegerSortedList(size);
+        System.out.println("soughtNumber = " + soughtNumber);
+        run();
+        System.out.println("LinearSearcher is finish!!!");
+    }
+
+    public LinearSearcher(int soughtNumber, List<Integer> sortedList) {
+        this.soughtNumber = soughtNumber;
+        this.sortedList = sortedList;
+        run();
+    }
+
+    private void run() {
+        System.out.println("LIST: " + sortedList);
+        for (int i: sortedList) {
+            if (i == soughtNumber) {
+                System.out.println("!!!!!!");
+                return;
+            }
+        }
+        System.out.println("No element");
+
     }
 
     @Override
-    public <T extends Comparable<T>> int searchIndex(List<T> sortedList, T target) {
-        logger.log("List " + sortedList);
-        for (int i = 0; i<sortedList.size(); i++) {
-            if (target.compareTo(sortedList.get(i)) == 0) {
-                logger.log("it's index :" + i);
-                return i;
-            }
-        }
-        logger.log("No element");
-        return -1;
+    public <T extends Comparable<T>> int SearchIndex(List<T> sortedList, T target) {
+        return 0;
     }
 }
