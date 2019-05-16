@@ -5,7 +5,7 @@ import ru.bikert.learning.Logger;
 
 import java.util.List;
 /*
-    Бинарный поиск для значений типа интеджер
+    Бинарный поиск
  */
 public class BinarySearcher implements Searcher {
 
@@ -21,7 +21,7 @@ public class BinarySearcher implements Searcher {
     }
 
 
-    public <T extends Comparable<T>> int SearchIndex(List<T> sortedList, T target){
+    public <T extends Comparable<T>> int searchIndex(List<T> sortedList, T target){
 
         logger.log("LIST: " + sortedList);
 
