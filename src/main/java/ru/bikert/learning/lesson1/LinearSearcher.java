@@ -4,6 +4,7 @@ import ru.bikert.learning.ConsoleLogger;
 import ru.bikert.learning.Logger;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LinearSearcher implements Searcher {
 
@@ -20,6 +21,12 @@ public class LinearSearcher implements Searcher {
 
     @Override
     public <T extends Comparable<T>> int searchIndex(List<T> sortedList, T target) {
+
+        if(!isSorted(sortedList)){
+            logger.log("List is not sorted");
+            return -1;
+        }
+
         logger.log("List " + sortedList);
         for (int i = 0; i<sortedList.size(); i++) {
             if (target.compareTo(sortedList.get(i)) == 0) {
