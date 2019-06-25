@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LinearSearcherTest extends TestCase {
 
@@ -26,6 +27,7 @@ public class LinearSearcherTest extends TestCase {
             System.out.println("Result: " + result + " expected: " + entry.getKey());
             assertEquals(result,entry.getKey());
         }
+
 
     }
 

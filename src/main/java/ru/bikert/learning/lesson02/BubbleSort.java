@@ -1,36 +1,40 @@
 package ru.bikert.learning.lesson02;
 
-import ru.bikert.learning.CollectionHelper;
+import ru.bikert.learning.ConsoleLogger;
+import ru.bikert.learning.Logger;
 
 import java.util.List;
 
-public class BubbleSort {
+public class BubbleSort implements Sorting {
 
-    final int SIZE_COLLECTION = 10;
-    List<Integer> list;
+    Logger logger;
 
-    public BubbleSort() {
-        list = CollectionHelper.getIntegerList(SIZE_COLLECTION);
-        run();
+    public BubbleSort(Logger logger) {
+        this.logger = logger;
     }
 
-    private void run() {
+    public BubbleSort() {
+        this.logger = new ConsoleLogger();
+    }
+
+    @Override
+    public  <T extends Comparable<T>> void ascendingSort(List<T> list) {
 
         for (int i = 0; i<list.size(); i++){
-            int number = list.get(i);
+            T value = list.get(i);
             for (int j = i-1; j>=0; j--) {
-                int leftNumber = list.get(j);
-                if (number > leftNumber) {
+                T leftValue = list.get(j);
+                if (value.compareTo(leftValue) > 0) {
                     break;
                 } else {
                     list.remove(j+1);
-                    list.add(j+1, leftNumber);
+                    list.add(j+1, leftValue);
                     list.remove(j);
-                    list.add(j, number);
+                    list.add(j, value);
                 }
             }
-            System.out.println(list);
+            logger.log(list.toString());
         }
-        System.out.println("List" + list);
+        logger.log("List" + list);
     }
 }

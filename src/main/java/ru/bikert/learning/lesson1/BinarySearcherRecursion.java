@@ -30,13 +30,15 @@ public class BinarySearcherRecursion implements Searcher {
     private <T extends Comparable<T>> int search(List<T> sortedList, T target, int start, int end) {
         logger.log("Start: " + start + " End: " + end);
         if(start >= end) return -1;
-        int center = (end + start) / 2;
-        logger.log("center" + center);
-        int compare = target.compareTo(sortedList.get(center));
+        int meddle = (end + start) / 2;
+        logger.log("center" + meddle);
+        int compare = target.compareTo(sortedList.get(meddle));
         logger.log("compare " + compare);
-        if (compare == 0) return center;
-        if (compare < 0) search(sortedList,target,start,center-1);
-        if (compare > 0) search(sortedList,target,center+1,end);
-        return -1;
+        if (compare == 0)
+            return meddle;
+        else if (compare < 0)
+            return search(sortedList,target,start,meddle-1);
+        else
+            return search(sortedList,target,meddle+1,end);
     }
 }
